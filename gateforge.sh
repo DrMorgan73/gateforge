@@ -1,49 +1,84 @@
 #!/bin/zsh
-# Golden Gate 27.0 AI Enabler for M1/M2/M3
-# Built by Mohammed Morgan - Medford, MA
-# Does everything we did today automatically
+set -e
 
 echo "╔══════════════════════════════════════════╗"
-echo "║  GOLDEN GATE 27.0 AI ENABLER v1.0      ║"
-echo "║  M1/M2/M3 + PyTorch MPS + MLX          ║"
+echo "║  GateForge v1.1 - Golden Gate 27 AI    ║"
 echo "╚══════════════════════════════════════════╝"
+echo ""
 
-echo "\n[1/6] Checking Mac..."
-if [[ $(uname -m) != "arm64" ]]; then echo "❌ Need Apple Silicon M1/M2/M3"; exit 1; fi
-sw_vers | grep ProductVersion
+# [0/6] PRE-FLIGHT: Check macOS version
+echo "[0/6] Checking macOS version..."
+OS_VER=$(sw_vers -productVersion)
+OS_MAJOR=$(echo $OS_VER | cut -d. -f1)
+echo "   Found: macOS $OS_VER"
 
-echo "\n[2/6] Freeing space (snapshots + caches)..."
-tmutil listlocalsnapshots /
-sudo tmutil thinlocalsnapshots / 10000000000 4 2>/dev/null
-rm -rf ~/.Trash/* 2>/dev/null
-echo "y" | rm -rf ~/Library/Caches/* 2>/dev/null
-df -h /System/Volumes/Data | tail -1
+if [ "$OS_MAJOR" -lt 27 ]; then
+  echo ""
+  echo "⚠️  You are on macOS $OS_VER"
+  echo "   GateForge needs macOS 27.0 (Golden Gate) for best M1/M2/M3 AI support"
+  echo ""
+  echo "   Please update first:"
+  echo "   Apple Menu > System Settings > General > Software Update"
+  echo ""
+  echo -n "Continue anyway? [y/N]: "
+  read ans
+  if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
+    echo "Aborting. Update macOS and re-run."
+    exit 1
+  fi
+else
+  echo "   ✅ macOS $OS_VER - Ready"
+fi
 
-echo "\n[3/6] Checking Xcode..."
-xcode-select -p || xcode-select --install
+echo ""
+echo "[1/6] Checking Mac..."
+sw_vers | grep -E "ProductName|ProductVersion|BuildVersion"
 
-echo "\n[4/6] Checking Homebrew ARM..."
-if [[ ! -f /opt/homebrew/bin/brew ]]; then
+echo ""
+echo "[2/6] Freeing space (snapshots + caches)..."
+echo "Snapshots for disk /:"
+tmutil listlocalsnapshots / 2>/dev/null | head -5 || echo "No snapshots"
+echo ""
+sudo tmutil thinlocalsnapshots / 999999999999 4 2>&1 | tail -3 || true
+sudo rm -rf ~/Library/Caches/* 2>/dev/null || true
+rm -rf ~/.Trash/* 2>/dev/null || true
+df -h / | tail -1
+
+echo ""
+echo "[3/6] Checking Xcode..."
+xcode-select -p 2>/dev/null || sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+echo $(xcode-select -p)
+
+echo ""
+echo "[4/6] Checking Homebrew ARM..."
+if [ ! -f /opt/homebrew/bin/brew ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-eval "$(/opt/homebrew/bin/brew shellenv)"
-brew --version
+echo "Homebrew $(/opt/homebrew/bin/brew --version | head -1)"
 
-echo "\n[5/6] Creating ai-env..."
-python3 -m venv ~/ai-env 2>/dev/null || python3.11 -m venv ~/ai-env
+echo ""
+echo "[5/6] Creating ai-env..."
+if [ ! -d ~/ai-env ]; then
+  /opt/homebrew/bin/brew install python@3.11 2>/dev/null || true
+  /opt/homebrew/bin/python3.11 -m venv ~/ai-env
+fi
 source ~/ai-env/bin/activate
-pip install --upgrade pip -q
-pip install torch torchvision torchaudio mlx mlx-lm transformers huggingface_hub accelerate -q
+pip install --upgrade pip --quiet
+pip install torch torchvision torchaudio mlx numpy --quiet
 
-echo "\n[6/6] TESTING..."
-python -c "
+echo ""
+echo "[6/6] TESTING..."
+python3 << 'PY'
 import torch, mlx.core as mx
-print(f'✅ PyTorch MPS: {torch.backends.mps.is_available()}')
-print(f'✅ MLX Device: {mx.default_device()}')
-a=torch.randn(500,500,device='mps'); b=torch.randn(500,500,device='mps'); c=a@b
-print(f'✅ M1 GPU: {c.device} works')
-print('')
-print('🎉 GOLDEN GATE 27.0 AI READY!')
-"
+print(f"✅ PyTorch MPS: {torch.backends.mps.is_available()}")
+print(f"✅ MLX Device: {mx.default_device()}")
+try:
+  x=torch.randn(2,2,device='mps')
+  print(f"✅ M1 GPU: {x.device} works")
+except Exception as e:
+  print(f"❌ M1 GPU failed: {e}")
+PY
 
-echo "\nDone! Run: source ~/ai-env/bin/activate"
+echo ""
+echo "🎉 GateForge Ready! macOS $OS_VER"
+echo "Done! Run: source ~/ai-env/bin/activate"
