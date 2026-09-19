@@ -1,29 +1,42 @@
 <!DOCTYPE html>
-<html><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GateForge - Make your Mac AI Ready</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#000;color:#fff;margin:0;text-align:center}
-.hero{padding:100px 20px;background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600');background-size:cover;min-height:60vh}
-h1{font-size:64px;margin:0} .box{background:#111;border:1px solid #333;border-radius:12px;padding:18px;margin:30px auto;max-width:700px;font-family:monospace;word-break:break-all}
-.btn{background:#fff;color:#000;padding:14px 28px;border-radius:30px;font-weight:700;text-decoration:none;display:inline-block;margin:8px;cursor:pointer}
-.card{background:#111;border:1px solid #222;border-radius:16px;padding:20px;width:220px}
-.cards{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:40px}
-</style>
-</head><body>
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#000;color:#fff;margin:0}
+.hero{padding:90px 20px;text-align:center;background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600');background-size:cover}
+h1{font-size:60px;margin:0} .box{background:#111;border:1px solid #333;border-radius:12px;padding:16px;margin:24px auto;max-width:760px;font-family:monospace;font-size:14px;word-break:break-all}
+.btn{background:#fff;color:#000;padding:12px 24px;border-radius:30px;font-weight:700;text-decoration:none;display:inline-block;margin:6px;cursor:pointer;border:0}
+.manual{max-width:900px;margin:0 auto;padding:40px 20px}
+.card{background:#111;border:1px solid #222;border-radius:16px;padding:24px;margin:20px 0;text-align:left}
+pre{background:#0a0a0a;border:1px solid #222;padding:16px;border-radius:12px;overflow:auto;font-size:13px}
+code{background:#222;padding:2px 6px;border-radius:5px}
+</style></head><body>
 <div class="hero">
 <h1>⚡ GateForge</h1>
-<p style="font-size:22px;color:#ddd">Make your M1/M2/M3 Mac AI Ready in 2 minutes</p>
+<p style="font-size:20px;color:#ddd">Make your M1/M2/M3 Mac AI Ready in 2 minutes</p>
 <div class="box" id="cmd">curl -fsSL https://raw.githubusercontent.com/DrMorgan73/gateforge/main/gateforge.sh | zsh</div>
-<a class="btn" onclick="navigator.clipboard.writeText(document.getElementById('cmd').innerText);this.innerText='✅ Copied!'">📋 Copy Install</a>
+<button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('cmd').innerText);this.innerText='✅ Copied!'">📋 Copy Install</button>
 <a class="btn" href="https://github.com/DrMorgan73/gateforge" style="background:#222;color:#fff">View on GitHub</a>
-<p>✅ Checks macOS 27.0 first • Asks to update if needed • Tests GPU</p>
+<p style="margin-top:16px">✅ Checks macOS 27.0 first • Asks to update if needed • Tests GPU</p>
 </div>
-<div class="cards">
-<div class="card"><h3>🔍 Step 1</h3><p>Checks your macOS<br>27.0 ✅ Great!</p></div>
-<div class="card"><h3>🔧 Step 2</h3><p>Frees space &<br>creates AI env</p></div>
-<div class="card"><h3>🎉 Step 3</h3><p>✅ GPU works!<br>AI Ready!</p></div>
+<div class="manual">
+<h2 style="text-align:center;font-size:32px">📖 User Manual</h2>
+<div class="card"><h3>🚀 Quick Start</h3><pre>1. Open Terminal (Cmd+Space → Terminal)
+2. Paste the command above
+3. Enter your Mac password (safe)
+4. Wait 2 min
+5. Done: ✅ GPU works! Device(gpu,0)
+6. Run: source ~/ai-env/bin/activate</pre></div>
+<div class="card"><h3>✅ Requirements</h3><p>• macOS 27.0 Golden Gate or newer<br>• M1/M2/M3/M4 Mac<br>• 5GB free<br>• Internet<br>Your site checks this first!</p></div>
+<div class="card"><h3>💻 How to Use After Install</h3><pre>source ~/ai-env/bin/activate
+python3
+>>> import torch
+>>> torch.backends.mps.is_available()  # True
+>>> import mlx.core as mx
+>>> mx.default_device()  # Device(gpu,0)
+# You're AI Ready!</pre></div>
+<div class="card"><h3>🔧 Troubleshooting</h3><p><b>Trash/* error?</b> Fixed in v2.1<br><b>python not found?</b> Fixed<br><b>Space full?</b> We auto-clean 3GB<br><b>Old macOS?</b>  → System Settings → Software Update</p></div>
+<div class="card"><h3>🗑️ Uninstall</h3><pre>rm -rf ~/ai-env</pre></div>
 </div>
-<p style="color:#666;padding:40px">Built for macOS Golden Gate 27 • Your wallpaper, your tool 🌉</p>
-</div>
+<p style="text-align:center;color:#555;padding:30px">Built for Golden Gate 27 🌉 | drmorgan73.github.io/gateforge</p>
 </body></html>
