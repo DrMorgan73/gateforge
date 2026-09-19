@@ -1,42 +1,51 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GateForge - Make your Mac AI Ready</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GateForge v2.2 - Python 3.11 Locked</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#000;color:#fff;margin:0}
-.hero{padding:90px 20px;text-align:center;background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600');background-size:cover}
-h1{font-size:60px;margin:0} .box{background:#111;border:1px solid #333;border-radius:12px;padding:16px;margin:24px auto;max-width:760px;font-family:monospace;font-size:14px;word-break:break-all}
-.btn{background:#fff;color:#000;padding:12px 24px;border-radius:30px;font-weight:700;text-decoration:none;display:inline-block;margin:6px;cursor:pointer;border:0}
-.manual{max-width:900px;margin:0 auto;padding:40px 20px}
-.card{background:#111;border:1px solid #222;border-radius:16px;padding:24px;margin:20px 0;text-align:left}
-pre{background:#0a0a0a;border:1px solid #222;padding:16px;border-radius:12px;overflow:auto;font-size:13px}
-code{background:#222;padding:2px 6px;border-radius:5px}
-</style></head><body>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:-apple-system,sans-serif;line-height:1.6}
+.hero{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;background:radial-gradient(ellipse at center,#1a1a2e 0%,#000 70%)}
+.badge{background:#00ff88;color:#000;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;margin-bottom:20px}
+h1{font-size:52px;font-weight:800}h1 span{background:linear-gradient(90deg,#00ff88,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{font-size:18px;color:#aaa;margin:20px 0;max-width:600px}
+.box{background:#111;border:1px solid #222;border-radius:12px;padding:20px;max-width:720px;width:100%;margin:14px 0}
+.box.uninstall{border-color:#ff3333;background:#150a0a}
+.label{color:#666;font-size:12px;text-transform:uppercase;margin-bottom:10px}.label.red{color:#ff4444}
+.code{font-family:monospace;background:#000;border-radius:8px;padding:14px;word-break:break-all}.code.green{color:#00ff88}.code.red{color:#ff8888}
+.btn{border:none;padding:10px 24px;border-radius:8px;font-weight:700;cursor:pointer;margin-top:14px}.btn.green{background:#fff;color:#000}.btn.red{background:#ff3333;color:#fff}
+.manual{max-width:900px;margin:0 auto;padding:40px 20px}.card{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:16px;padding:28px;margin-bottom:24px}
+</style>
+</head>
+<body>
 <div class="hero">
-<h1>⚡ GateForge</h1>
-<p style="font-size:20px;color:#ddd">Make your M1/M2/M3 Mac AI Ready in 2 minutes</p>
-<div class="box" id="cmd">curl -fsSL https://raw.githubusercontent.com/DrMorgan73/gateforge/main/gateforge.sh | zsh</div>
-<button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('cmd').innerText);this.innerText='✅ Copied!'">📋 Copy Install</button>
-<a class="btn" href="https://github.com/DrMorgan73/gateforge" style="background:#222;color:#fff">View on GitHub</a>
-<p style="margin-top:16px">✅ Checks macOS 27.0 first • Asks to update if needed • Tests GPU</p>
+<div class="badge">✅ v2.2 PYTHON 3.11 LOCKED + UNINSTALL FRONTEND ONLY</div>
+<h1>🌉 <span>GateForge</span></h1>
+<div class="subtitle">Make macOS Golden Gate AI Ready in 2 min. Maria Air Tested ✅</div>
+
+<div class="box">
+<div class="label">Install - Python 3.11 Locked</div>
+<div class="code green">curl -fsSL https://raw.githubusercontent.com/DrMorgan73/gateforge/main/gateforge.sh | zsh</div>
+<button class="btn green" onclick="navigator.clipboard.writeText('curl -fsSL https://raw.githubusercontent.com/DrMorgan73/gateforge/main/gateforge.sh | zsh').then(()=>{this.innerText='✅ Copied!'})">📋 Copy Install</button>
+<div style="margin-top:10px;color:#666;font-size:12px">✅ Python 3.11.16 • MPS • MLX • macOS 27 Ready</div>
 </div>
+
+<div class="box uninstall">
+<div class="label red">Uninstall - Frontend Only - No Backend</div>
+<div class="code red">curl -fsSL https://raw.githubusercontent.com/DrMorgan73/gateforge/main/uninstall.sh | zsh</div>
+<button class="btn red" onclick="navigator.clipboard.writeText('curl -fsSL https://raw.githubusercontent.com/DrMorgan73/gateforge/main/uninstall.sh | zsh').then(()=>{this.innerText='✅ Copied!';setTimeout(()=>this.innerText='🗑️ Copy Uninstall',2000)})">🗑️ Copy Uninstall</button>
+<div style="margin-top:10px;color:#ff6666;font-size:12px">Frontend only • Deletes ~/ai-env • No server • Safe - no Trash/* bug</div>
+</div>
+
+</div>
+
 <div class="manual">
-<h2 style="text-align:center;font-size:32px">📖 User Manual</h2>
-<div class="card"><h3>🚀 Quick Start</h3><pre>1. Open Terminal (Cmd+Space → Terminal)
-2. Paste the command above
-3. Enter your Mac password (safe)
-4. Wait 2 min
-5. Done: ✅ GPU works! Device(gpu,0)
-6. Run: source ~/ai-env/bin/activate</pre></div>
-<div class="card"><h3>✅ Requirements</h3><p>• macOS 27.0 Golden Gate or newer<br>• M1/M2/M3/M4 Mac<br>• 5GB free<br>• Internet<br>Your site checks this first!</p></div>
-<div class="card"><h3>💻 How to Use After Install</h3><pre>source ~/ai-env/bin/activate
-python3
->>> import torch
->>> torch.backends.mps.is_available()  # True
->>> import mlx.core as mx
->>> mx.default_device()  # Device(gpu,0)
-# You're AI Ready!</pre></div>
-<div class="card"><h3>🔧 Troubleshooting</h3><p><b>Trash/* error?</b> Fixed in v2.1<br><b>python not found?</b> Fixed<br><b>Space full?</b> We auto-clean 3GB<br><b>Old macOS?</b>  → System Settings → Software Update</p></div>
-<div class="card"><h3>🗑️ Uninstall</h3><pre>rm -rf ~/ai-env</pre></div>
+<h2 style="text-align:center;margin-bottom:20px">📖 User Manual v2.2</h2>
+<div class="card"><b>✅ v2.2 Fixes:</b> Trash/* → find, Python locked to 3.11, 64.2MB resume, Uninstall frontend only</div>
+<div class="card"><b>Install:</b> Paste green command → password → 2 min → ✅ GPU works! Device(gpu,0)</div>
+<div class="card"><b>Uninstall:</b> Paste red command → removes ~/ai-env only. No backend. Safe. Optional: brew uninstall python@3.11</div>
+<div style="text-align:center;color:#333;font-size:12px;padding:30px">GateForge v2.2 | DrMorgan73 | 1e69ffe | Frontend uninstall - no backend 🌉</div>
 </div>
-<p style="text-align:center;color:#555;padding:30px">Built for Golden Gate 27 🌉 | drmorgan73.github.io/gateforge</p>
-</body></html>
+</body>
+</html>
