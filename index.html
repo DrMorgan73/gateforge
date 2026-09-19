@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GateForge - Make your Mac AI Ready</title>
 <style>
 body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#000;color:#fff;margin:0;text-align:center}
-.hero{padding:80px 20px;background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600');background-size:cover}
-h1{font-size:56px;margin:0} p{font-size:20px;color:#ccc}
-.box{background:#111;border:1px solid #333;border-radius:12px;padding:16px;margin:30px auto;max-width:600px;font-family:monospace;word-break:break-all}
-.btn{background:#fff;color:#000;padding:14px 28px;border-radius:30px;font-weight:700;text-decoration:none;display:inline-block;margin:10px}
+.hero{padding:100px 20px;background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600');background-size:cover;min-height:60vh}
+h1{font-size:64px;margin:0} .box{background:#111;border:1px solid #333;border-radius:12px;padding:18px;margin:30px auto;max-width:700px;font-family:monospace;word-break:break-all}
+.btn{background:#fff;color:#000;padding:14px 28px;border-radius:30px;font-weight:700;text-decoration:none;display:inline-block;margin:8px;cursor:pointer}
+.card{background:#111;border:1px solid #222;border-radius:16px;padding:20px;width:220px}
 .cards{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:40px}
-.card{background:#111;border:1px solid #222;border-radius:16px;padding:24px;width:240px}
 </style>
-</head>
-<body>
+</head><body>
 <div class="hero">
 <h1>⚡ GateForge</h1>
-<p>Make your M1/M2/M3 Mac AI Ready in 2 minutes</p>
+<p style="font-size:22px;color:#ddd">Make your M1/M2/M3 Mac AI Ready in 2 minutes</p>
 <div class="box" id="cmd">curl -fsSL https://raw.githubusercontent.com/DrMorgan73/gateforge/main/gateforge.sh | zsh</div>
-<a class="btn" onclick="navigator.clipboard.writeText(document.getElementById('cmd').innerText);alert('Copied!')">📋 Copy Install Command</a>
-<a class="btn" href="https://github.com/DrMorgan73/gateforge" style="background:#222;color:#fff">GitHub</a>
-<p style="margin-top:20px">✅ Checks macOS 27.0 first • ✅ Fixes space • ✅ Tests GPU</p>
+<a class="btn" onclick="navigator.clipboard.writeText(document.getElementById('cmd').innerText);this.innerText='✅ Copied!'">📋 Copy Install</a>
+<a class="btn" href="https://github.com/DrMorgan73/gateforge" style="background:#222;color:#fff">View on GitHub</a>
+<p>✅ Checks macOS 27.0 first • Asks to update if needed • Tests GPU</p>
 </div>
 <div class="cards">
-<div class="card"><h3>1. Checks macOS</h3><p>Your macOS: 27.0<br>✅ Great! Perfect</p></div>
-<div class="card"><h3>2. Sets Up AI</h3><p>Creates ~/ai-env<br>Installs PyTorch + MLX</p></div>
-<div class="card"><h3>3. Tests GPU</h3><p>✅ GPU works!<br>Device(gpu,0)</p></div>
+<div class="card"><h3>🔍 Step 1</h3><p>Checks your macOS<br>27.0 ✅ Great!</p></div>
+<div class="card"><h3>🔧 Step 2</h3><p>Frees space &<br>creates AI env</p></div>
+<div class="card"><h3>🎉 Step 3</h3><p>✅ GPU works!<br>AI Ready!</p></div>
 </div>
-<p style="color:#666;padding:40px">Built for Golden Gate 27 • M1/M2/M3 Ready</p>
-</body>
-</html>
+<p style="color:#666;padding:40px">Built for macOS Golden Gate 27 • Your wallpaper, your tool 🌉</p>
+</div>
+</body></html>
